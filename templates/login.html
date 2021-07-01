@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Flask To-do</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="main">
+    <center><h2>Enter login details</h2></center>
+    <br>
+    <form action="" method="POST">
+        <table>
+            <tr>
+                <td>
+                    Username:
+                </td>
+                <td>
+                    <input type="text" id="username" name="username" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password:
+                </td>
+                <td>
+                    <input type="password" id="password" name="password" required>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <center><input type="submit" class="form_button">
+        <input type="reset" class="form_button"></center>
+        {% if error %}
+        <center><p>{{ error }}</p></center>
+        {% endif %}
+    </form>
+</div>
+
+{% endblock %}

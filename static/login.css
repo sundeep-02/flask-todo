@@ -1,0 +1,35 @@
+.main {
+    font-size: larger;
+    width: fit-content;
+    margin: auto;
+    padding-top: 12rem;
+}
+
+#username {
+    height: 2.5rem;
+    width: 250px;
+    font-size: large;
+    padding-left: 10px;
+}
+
+#password {
+    height: 2.5rem;
+    width: 250px;
+    font-size: large;
+    padding-left: 10px;
+}
+
+td {
+    padding-left: 20px;
+}
+
+.form_button {
+    height: 2.4rem;
+    width: 100px;
+    font-size: large;
+    cursor: pointer;
+}
+
+p {
+    color: red;
+}

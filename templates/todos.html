@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Flask To-do</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='todos.css') }}">
+{% endblock %}
+
+{% block body %}
+<div id="logout">
+    <h3><span>{{ user.name }}</span><a href="/todos/logout"><button id="logout_btn">Log out</button></a></h3>
+</div>
+<div class="container">
+    <div class="left">
+        <form id="form1" method="GET">
+            <center>
+            <h2>Search by due date</h2>
+            <input name="search_due_date" id="search_due_date" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Due Date" required>
+            <br><br>
+            <input type="submit" value="Search tasks" id="search_tasks" onclick="search()">
+            </center>
+        </form>
+    </div>
+
+    <div class="middle">
+        <a href="/todos/"><h1>To-do List</h1></a>
+        {% if user.access=='rw' %}
+        <center><p style="color: green;">You have permission to add and update tasks.</p></center>
+        <form action="/todos/" method="POST">
+            <input type="text" name="new_task" id="new_task" placeholder="Enter a new task" required>
+            <input class="date_input" name="due_date" id="due_date" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Due Date" required>
+            <br><br>
+            <center><input type="submit" value="Add task" id="add_task"></center>
+        </form>
+        {% else %}
+        <center><p style="color: red;">You don't have permission to add or update tasks.</p></center>
+        {% endif %}
+        <br>
+
+        {% if tasks %}
+        <table>
+            <tr>
+                <!-- <th>ID</th> -->
+                <th>Task</th>
+                <th>Due Date</th>
+                {% if user.access=='rw' %}
+                <th colspan="3">Status</th>
+                {% else %}
+                <th>Status</th>
+                {% endif %}
+                
+            </tr>
+            {% for task in tasks %}
+            <tr>
+                <!-- <td>{{ task.id }}</td> -->
+                <td class="task_col">{{ task.task }}</td>
+                <td class="duedate_col">{{ task.due_date }}</td>
+                <td class="status_col">{{ task.task_status }}</td>
+                {% if user.access=='rw' %}
+                <td class="update_col">
+                    <div class="dropdown">
+                        <button class="update_btn">&#8679;</button>
+                        <div class="dropdown-content">
+                            <p onclick="putRequest({{ task.id }}, this)">Not Started</p>
+                            <p onclick="putRequest({{ task.id }}, this)">In Progress</p>
+                            <p onclick="putRequest({{ task.id }}, this)">Finished</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="delete_col"><button class="delete_btn" onclick="deleteRequest({{ task.id }})">&#10005;</button></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <center>
+            <h2>No tasks available!</h2>
+        </center>
+        {% endif %}
+    </div>
+        
+    <div class="right">
+        <center>
+        <h2>Search by status</h2>
+        <a href="/todos/overdue"><button class="button1">Overdue</button></a>
+        <br><br>
+        <a href="/todos/finished"><button class="button1">Finished Tasks</button></a>
+        </center>
+    </div>
+</div>
+<script>
+    function search() {
+        document.getElementById('form1').action = "/todos/due/"+document.getElementById('search_due_date').value
+    }
+
+    function deleteRequest(id) {
+        $.ajax({
+            url: '/todos/'+id,
+            type: 'DELETE',
+        });
+        alert("Task Deleted!");
+        window.open('/todos/', '_self')
+    }
+
+    function putRequest(id, para) {
+        $.ajax({
+            url: '/todos/'+id,
+            type: 'PUT',
+            data : { 'data': para.innerHTML }
+        });
+        alert("Status Updated!");
+        window.open('/todos/', '_self')
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,174 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+}
+
+.left {
+    width: 25%;
+    padding-top: 4%;
+}
+
+.middle {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.right {
+    width: 25%;
+    padding-top: 4%;
+}
+
+.middle h1 {
+    text-align: center;
+}
+
+table {
+    border: 1px solid #ddd;
+    font-size: larger;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table tr:nth-child(even){background-color: #f2f2f2;}
+  
+table tr:hover {background-color: #ddd;}
+
+button {
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content p {
+    color: black;
+    padding-left: 12px;
+    text-decoration: none;
+    display: block;
+}
+  
+.dropdown-content p:hover {
+    background-color: #f1f1f1;
+    cursor: pointer
+}
+  
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.task_col {
+    padding-left: 10px;
+}
+
+.duedate_col {
+    width: 150px;
+    text-align: center;
+}
+
+.status_col {
+    width: 150px;
+    text-align: center;
+}
+
+.delete_col {
+    width: 45px;
+}
+
+.delete_btn {
+    width: 32px;
+    color: red;
+}
+
+.update_btn {
+    width: 32px
+}
+
+.update_col {
+    width: 45px;
+}
+
+#new_task {
+    height: 2.5rem;
+    width: 75%;
+    font-size: large;
+    padding-left: 10px;
+}
+
+#due_date {
+    height: 2.5rem;
+    width: 23%;
+    font-size: large;
+    padding-left: 10px;
+}
+
+#search_due_date {
+    height: 2.5rem;
+    width: 70%;
+    font-size: large;
+    padding-left: 10px;
+}
+
+#add_task {
+    height: 2.4rem;
+    width: 22%;
+    font-size: large;
+    cursor: pointer;
+}
+
+#search_tasks {
+    height: 2.4rem;
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.button1 {
+    height: 2.4rem;
+    width: 50%;
+    font-size: large;
+}
+
+#logout {
+    position: absolute;
+    top: 5px;
+    right: 18px;
+}
+
+#logout > h3 > span {
+    padding-right: 10px;
+}
+
+#logout_btn {
+    height: 2.4rem;
+    width: 100px;
+    font-size: large;
+}
